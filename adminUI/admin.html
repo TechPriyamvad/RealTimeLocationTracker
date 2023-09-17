@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin UI</title>
+</head>
+<body>
+  <h1>Admin UI</h1>
+  <ul id="locationList"></ul>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const locationList = document.getElementById('locationList');
+
+    socket.on('locationUpdate', (location) => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `User: ${location.userId}, Latitude: ${location.latitude}, Longitude: ${location.longitude}`;
+      locationList.appendChild(listItem);
+    });
+  </script>
+</body>
+</html>
